@@ -1,0 +1,45 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Create an article
+{% endblock %}
+
+{% block from %}
+<form action="{% url 'encyclopedia:searchMatches' %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" name="Search" value="Search">
+</form>
+{% endblock %}
+
+{% block body %}
+
+{% if messages %}
+
+{% for message in messages %}
+<div class="alert alert-danger">
+    <strong>Error! </strong>{{ message }}
+</div>
+{% endfor %}
+
+{% endif %}
+
+
+<h1>Create a new article</h1>
+<form action="{% url 'encyclopedia:createArticle' %}" method="POST">
+    {% csrf_token %}
+    {{ fromCreate }}
+    <input type="submit" name="Create" value="Create">
+</form>
+{% endblock %}
+
+{% block nav %}
+{% if search %}
+<hr>
+<p><b>Search Results</b>
+<p>
+    {% for result in results %}
+    <li><a href="/wiki/{{ result }}">{{ result }}</a></li>
+    {% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Encyclopedia
+{% endblock %}
+
+{% block from %}
+<form action="{% url 'encyclopedia:searchMatches' %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" name="Search" value="Search">
+</form>
+{% endblock %}
+
+{% block body %}
+<h1>All Pages</h1>
+
+<ul>
+    {% for entry in entries %}
+    <li><a href="/wiki/{{ entry }}">{{ entry }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+{% block nav %}
+{% if search %}
+<hr>
+<p><b>Search Results</b><p>
+    {% for result in results %}
+    <li><a href="/wiki/{{ result }}">{{ result }}</a></li>
+    {% endfor %}
+{% endif %}
+{% endblock %}

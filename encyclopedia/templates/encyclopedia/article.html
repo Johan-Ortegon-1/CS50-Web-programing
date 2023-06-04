@@ -1,0 +1,24 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block from %}
+<form action="{% url 'encyclopedia:searchMatches' %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" name="Search" value="Search">
+</form>
+{% endblock %}
+
+{% block body %}
+{% if flagError %}
+<a href="{% url 'encyclopedia:editArticle' title=title %}">edit</a>
+{% endif %}
+<div>
+    {{content | safe}}
+</div>
+{% endblock %}
+{% block nav %}
+{% endblock %}
