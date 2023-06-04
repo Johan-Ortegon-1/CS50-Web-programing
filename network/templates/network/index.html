@@ -1,0 +1,99 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+{% if message %}
+<div class="alert alert-danger">
+    <strong>Error!</strong>{{message}}
+</div>
+{% endif %}
+
+{% if user.is_authenticated %}
+<div id="form-container" class="container border">
+    <div id="compose-view">
+        <h3>New post</h3>
+        <form id="compose-form" action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Content:</label>
+                <textarea class="form-control" id="post_content" name="post_content"
+                    placeholder="What are you thinking?"></textarea>
+            </div>
+            <input type="submit" name="create_post" class="btn btn-primary" id="btn_new_sent" value="Post" />
+        </form>
+    </div>
+</div>
+{% else %}
+<div id="compose-view">
+    <a class="nav-link" href="{% url 'register' %}">Sign in if you want to post something!</a>
+    <a class="nav-link" href="{% url 'login' %}">Or login if you already have an account</a>
+</div>
+{% endif %}
+
+<div id="posts-view">
+    {% for post in page_obj %}
+    <div class="container border border-success">
+        <a class="owner" href="{% url 'profile' post.created_by.id%}">{{ post.created_by.username }}</a>
+
+        <form id="edit-form" action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
+            <textarea id="text_area_post_{{ post.id }}" name="text_area_edit_post" class="text_area_hidden">
+                {{ post.content }}
+            </textarea>
+            <p id="content_post_{{ post.id }}">
+                {{ post.content }}
+            </p>
+
+            {% if user == post.created_by %}
+            <input type="submit" name="edit_post" class="btn btn-success btn_hidden" id="btn_save_post_{{ post.id }}"
+                value="Save" onclick="save_post('{{ post.id }}')" />
+            {% endif %}
+        </form>
+
+        {% if user == post.created_by %}
+        <input type="submit" name="cancel_edit" class="btn btn-danger btn_hidden" id="btn_cancel_edit_{{ post.id }}"
+            value="Cancel" onclick="cancel_edit('{{ post.id }}')" />
+        <input type="submit" name="edit_post" class="btn btn-warning" id="btn_edit_post" value="Edit"
+            onclick="edit_post('{{ post.id }}')" />
+        {% endif %}
+
+        <h5>{{ post.date }}</h5>
+        {% if user.is_authenticated %}
+        <form id="like-dislike-form" action="{% url 'index' %}" method="POST">
+            <button type="submit" name="btn_like_dislike" id="btn_like_{{ post.id }}" class="btn btn-light" onclick="like_dislike('{{ post.id }}')">
+                <i class="fa fa-heart" style="font-size:20px;color:red"></i>
+            </button>
+        </form>
+        {% else %}
+        <i class="fa fa-heart" style="font-size:20px;color:red"></i>
+        {% endif %}
+        <p id="like_counter_{{ post.id }}">{{ post.like_counter }}</p>
+    </div>
+    {% endfor %}
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a>
+            </li>
+            {% endif %}
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+<script src="{% static 'network/posts.js' %}"></script>
+{% endblock %}

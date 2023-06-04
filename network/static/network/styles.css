@@ -1,0 +1,24 @@
+.container{
+    padding: 10px;
+}
+
+.owner {
+    font-size: 1rem;
+    color: rgb(58, 55, 65);
+}
+
+.text_area_hidden {
+    display: none;
+}
+
+.text_area_visible {
+    display: block;
+}
+
+.btn_hidden { 
+    display: none;
+}
+
+.btn_visible { 
+    display: block;
+}

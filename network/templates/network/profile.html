@@ -1,0 +1,68 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+    <h1>{{p_user.username}}</h1>
+    <h2>Followers: {{p_user.followers_counter}}</h2>
+    <h2>Following: {{p_user.following_counter}}</h2>
+    <form action="{% url 'profile' p_user.id%}" method="post">
+        {% csrf_token %}
+        {% if green_button %}
+        <input type="submit" name="follow" class="btn btn-primary" value="Follow" />
+        {% endif %}
+        {% if red_button %}
+        <input type="submit" name="unfollow" class="btn btn-danger" value="Unfollow" />
+        {% endif %}
+    </form>
+</div>
+
+<div id="posts-view">
+    {% for post in page_obj %}
+    <div class="container border border-success">
+        <a class="owner">{{ post.created_by.username }}</a>
+        
+        <form id="edit-form" action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="id_post" style="display: none;" value="{{ post.id }}">
+            <textarea id="text_area_post_{{ post.id }}" name="text_area_edit_post" class="text_area_hidden">
+                {{ post.content }}
+            </textarea>
+            <p id="content_post_{{ post.id }}">
+                {{ post.content }}
+            </p>
+
+            {% if user == post.created_by %}
+            <input type="submit" name="edit_post" class="btn btn-success btn_hidden" id="btn_save_post_{{ post.id }}"
+                value="Save" onclick="save_post('{{ post.id }}')" />
+            {% endif %}
+        </form>
+
+        {% if user == post.created_by %}
+        <input type="submit" name="cancel_edit" class="btn btn-danger btn_hidden" id="btn_cancel_edit_{{ post.id }}" value="Cancel"
+            onclick="cancel_edit('{{ post.id }}')" />
+        <input type="submit" name="edit_post" class="btn btn-warning" id="btn_edit_post" value="Edit"
+            onclick="edit_post('{{ post.id }}')" />
+        {% endif %}
+
+        <h5>{{ post.date }}</h5>
+        {% if user.is_authenticated %}
+        <form id="like-dislike-form" action="{% url 'index' %}" method="POST">
+            <button type="submit" name="btn_like_dislike" id="btn_like_{{ post.id }}" class="btn btn-light" onclick="like_dislike('{{ post.id }}')">
+                <i class="fa fa-heart" style="font-size:20px;color:red"></i>
+            </button>
+        </form>
+        {% else %}
+        <i class="fa fa-heart" style="font-size:20px;color:red"></i>
+        {% endif %}
+        <p id="like_counter_{{ post.id }}">{{ post.like_counter }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+<script src="{% static 'network/posts.js' %}"></script>
+{% endblock %}
