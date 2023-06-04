@@ -1,0 +1,240 @@
+/*CSS AUCTION_LISTING.HTML*/
+
+/*Comment section*/
+
+.please{
+    color: rgb(97, 91, 91);
+    font-weight: lighter;
+    background-color:#f1f436
+}
+
+.comments {
+    margin-top: 5%;
+    margin-left: 20px
+}
+
+.comment {
+    border: 1px solid rgb(255, 164, 164);
+    background-color: rgba(221, 202, 173, 0.973);
+    float: left;
+    border-radius: 5px;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-top: 10px
+}
+
+.comment h4,
+.comment span,
+.darker h4,
+.darker span {
+    display: inline
+}
+
+.comment p,
+.comment span,
+.darker p,
+.darker span {
+    color: rgb(0, 0, 0)
+}
+
+h1,
+h4 {
+    color: rgb(0, 0, 0);
+    font-weight: bold
+}
+
+label {
+    color: rgb(0, 0, 0)
+}
+
+#align-form {
+    margin-top: 20px
+}
+
+#checkbx {
+    background-color: black
+}
+
+#darker img {
+    margin-right: 15px;
+    position: static
+}
+
+.form-group input,
+.form-group textarea {
+    border: 1px solid rgba(16, 46, 46, 1);
+    border-radius: 12px
+}
+
+/*Alert message*/
+
+.alert {
+    padding: 20px;
+    background-color: #f1f436;
+    color: rgb(58, 53, 53);
+}
+
+.alert_winner {
+    padding: 20px;
+    background-color: #56f436;
+    color: rgb(58, 53, 53);
+}
+
+.alert_loser {
+    padding: 20px;
+    background-color: #f44c36;
+    color: rgb(58, 53, 53);
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+/*Left column*/
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    display: flex;
+}
+
+.row{
+    width: 100%;
+}
+
+.left-column {
+    width: 65%;
+    height: auto;
+    margin-right: 60px;
+    position: relative;
+}
+
+.right-column {
+    width: 35%;
+    margin-top: 60px;
+}
+
+.left-column img {
+    width: auto;
+    height: 100%;
+    max-height: 800px;
+    max-width: 650px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.left-column img.active {
+    opacity: 1;
+}
+
+/*Listing description*/
+
+.product-description {
+    border-bottom: 1px solid #E1E8EE;
+    margin-bottom: 20px;
+}
+
+.product-description span {
+    font-size: 12px;
+    color: #358ED7;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.product-description h1 {
+    font-weight: 300;
+    font-size: 52px;
+    color: #4a535a;
+    letter-spacing: -2px;
+}
+
+.product-description p {
+    font-size: 16px;
+    font-weight: 300;
+    color: #86939E;
+    line-height: 24px;
+}
+
+/*Listing current price*/
+
+.product-price {
+    display: flex;
+    align-items: center;
+}
+
+.product-price span {
+    font-size: 26px;
+    font-weight: 300;
+    color: #43474D;
+    margin-right: 20px;
+}
+
+.watch-btn {
+    display: inline-block;
+    background-color: #7DC855;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 30px;
+    transition: all .5s;
+}
+
+.stop-watch-btn {
+    display: inline-block;
+    background-color: #c8555b;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 12px 30px;
+    transition: all .5s;
+}
+
+
+.cart-btn:hover {
+    background-color: #64af3d;
+}
+
+/* Responsive */
+@media (max-width: 940px) {
+    .container {
+        flex-direction: column;
+        margin-top: 60px;
+    }
+
+    .left-column,
+    .right-column {
+        width: 100%;
+    }
+
+    .left-column img {
+        width: 300px;
+        right: 0;
+        top: -65px;
+        left: initial;
+    }
+}
+
+@media (max-width: 535px) {
+    .left-column img {
+        width: 220px;
+        top: -85px;
+    }
+}

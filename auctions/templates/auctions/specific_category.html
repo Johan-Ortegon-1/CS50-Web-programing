@@ -1,0 +1,42 @@
+{% extends "auctions/layout.html" %}
+
+
+{% block body %}
+<section class="section-products">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="header">
+                    <h3>{{category}}</h3>
+                    <h2>Category</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for item in items %}
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div style = "background: url({{item.img_url}}) no-repeat center; background-size: cover; transition: all 0.3s;" id="product-1" class="single-product">
+                    <div class="part-1">
+                        <ul>
+                            <li><a href="{% url 'auction_listing' item.id %}"><i class="fas fa-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="part-2">
+                    <a class="product-title" href="{% url 'auction_listing' item.id %}">{{item.title}}</a>
+                    {% if item.current_price > 0 %}
+                        <h4 class="product-price">${{item.current_price}}</h4>
+                    {% else %}
+                        <h4 class="product-price">${{item.starting_bid}}</h4>
+                    {% endif %}
+                </div>
+                <div class="description-wrapper">
+                    <p class="description-text">{{item.description}}</p>
+                </div>
+                
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
