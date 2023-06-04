@@ -1,0 +1,17 @@
+textarea {
+    min-height: 400px;
+}
+
+.email_unread_display {
+  border: 2px solid rgb(64, 67, 240);
+  border-radius: 8px;
+  padding: 5px;
+  background-color: white;
+}
+
+.email_read_display {
+  border: 2px solid rgb(64, 67, 240);
+  border-radius: 8px;
+  padding: 5px;
+  background-color: rgb(177, 177, 177);
+}
