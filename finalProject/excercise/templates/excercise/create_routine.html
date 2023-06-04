@@ -1,0 +1,75 @@
+{% extends "excercise/header.html" %}
+{% load static %}
+{% block style %}{% endblock %}
+{% block body %}
+    <section class="section-products">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-8 col-lg-6">
+                    {% if message %}
+                    <div>{{ message }}</div>
+                    {% endif %}
+                    <div class="header">
+                        <h2 class="general_title">Create a new routine</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <form id="create-routine-form" action="{% url 'index' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="title">Give it a title!</label>
+                        <input type="text"
+                               class="form-control"
+                               id="routine_title"
+                               name="routine_title"
+                               placeholder="My incredible routine!">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="true" id="sun_chb" name="sun_chb">
+                            <label class="form-check-label" for="sun-chb">Sunday</label>
+                            <input type="time" min="09:00" max="17:00" class="form-control" id="sun_s_t" name="sun_s_t" placeholder="start time">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="true" id="mon_chb" name="mon_chb">
+                            <label class="form-check-label" for="defaultCheck1">Monday</label>
+                            <input type="time" min="09:00" max="17:00" class="form-control" id="mon_s_t" name="mon_s_t" placeholder="start time">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="true" id="tue_chb" name="tue_chb">
+                            <label class="form-check-label" for="defaultCheck1">Tuesday</label>
+                            <input type="time" min="09:00" max="17:00" class="form-control" id="tue_s_t" name="tue_s_t" placeholder="start time">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="true" id="wed_chb" name="wed_chb">
+                            <label class="form-check-label" for="defaultCheck1">Wednesday</label>
+                            <input type="time" min="09:00" max="17:00" class="form-control" id="wed_s_t" name="wed_s_t" placeholder="start time">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="true" id="thu_chb" name="thu_chb">
+                            <label class="form-check-label" for="defaultCheck1">Thursday</label>
+                            <input type="time" min="09:00" max="17:00" class="form-control" id="thu_s_t" name="thu_s_t" placeholder="start time">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="true" id="fri_chb" name="fri_chb">
+                            <label class="form-check-label" for="defaultCheck1">Friday</label>
+                            <input type="time" min="09:00" max="17:00" class="form-control" id="fri_s_t" name="fri_s_t" placeholder="start time">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="true" id="sat_chb" name="sat_chb">
+                            <label class="form-check-label" for="defaultCheck1">Saturday</label>
+                            <input type="time" min="09:00" max="17:00" class="form-control" id="sat_s_t" name="sat_s_t" placeholder="start time">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-outline-success" id="btn_create" name="btn_create">Create</button>
+                        <button type="submit" class="btn btn-outline-danger">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

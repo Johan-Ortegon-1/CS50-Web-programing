@@ -1,0 +1,136 @@
+.video-responsive {
+	height: 0;
+	overflow: hidden;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	position: relative;
+}
+
+.video-responsive iframe, .video-responsive object, .video-responsive embed {
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.info_container {
+	width: 100%;
+	background-color: #E0D8D6;
+}
+
+.info_container h4 {
+	white-space: pre-line;
+}
+
+/*https://www.fitnessblender.com/videos/upper-body-strength-circuit-with-bear-crawl-core-intermissions*/
+
+/*Admin options*/
+
+.edit_form{
+	display: none;
+}
+
+/*General DIV*/
+
+body {
+	color: #212432;
+	font-family: "Maison Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-size: 100%;
+	font-weight: 400;
+	word-wrap: break-word;
+}
+
+.content-details {
+	color: #fff;
+	background: #212432;
+	line-height: 1.5em;
+	padding: 2rem 4rem 4rem 4rem;
+	width: 100%;
+}
+
+*, ::before, ::after {
+	box-sizing: border-box;
+}
+
+/*Title*/
+.title-stats{
+	background-color:#212432;
+}
+
+.heading {
+	margin: 2rem 0 2rem 0;
+	padding: 0;
+	text-rendering: optimizelegibility;
+	color: rgb(255, 255, 255);
+}
+
+.heading.-x-small {
+	font-size: 1.6rem;
+	line-height: 26px;
+}
+
+.caps-half {
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.demi {
+	font-weight: 600;
+}
+
+/*Status div*/
+.stats {
+	padding-top: 0;
+	color: #fff;
+	font-size: 13px;
+	line-height: 1.7692em;
+	-webkit-box-flex: 1;
+	flex: 1 auto;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+	padding-top: 18px;
+	display: -webkit-box;
+	display: flex;
+	position: relative;
+	background: #212432;
+}
+
+/*ul*/
+
+ul.details-list {
+	margin: 0 0 1.6rem;
+	padding: 0;
+	list-style: none;
+	list-style: none;
+	padding: 0px 0px 0px 0px;
+	margin: 10px;
+}
+
+ul li {
+	color: #fff;
+	font-size: 13px;
+	line-height: 1.7692em;
+}
+
+ul.details-list li {
+	margin: 0px 0px 1px 0px;
+	line-height: 1.5em;
+}
+
+.stats ul li {
+	color: #fff;
+	font-size: 13px;
+	line-height: 1.7692em;
+}
+
+.stats ul.details-list {
+	list-style: none;
+	list-style: none;
+}
+
+/*span*/
+
+.stats ul.details-list li span.detail-header {
+	color: #a7aabb;
+}
